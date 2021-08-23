@@ -1,0 +1,19 @@
+{
+    "name": "modulis/bank",
+    "description": "Bank project",
+    "authors": [
+        {
+            "name": "Igoris Ivanovas",
+            "email": "igoris.x@inbox.lt"
+        }
+    ],
+    "require": {},
+     "autoload": {
+    "psr-4": {
+        "Bank\\": "app/",
+        "App\\DB\\": "app/",
+        "Bank\\Controller\\": "app/Controllers"
+        
+        }
+    }
+}
