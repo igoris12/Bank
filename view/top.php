@@ -129,4 +129,6 @@
         <a href="<?= URL ?>creat">Creat new account</a>
     </nav>
 
+    <?php showMessage();
+
 

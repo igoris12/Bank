@@ -11,11 +11,11 @@
                     <button type="submit" >delete</button>
                 </form>
 
-                <form action="<?= URL?>add/<?= $account['id']?>" method="post">
+                <form action="<?= URL?>add/<?= $account['id']?>" method="get">
                     <button type="submit" >Add money</button>
                 </form>
 
-                <form action="<?= URL?>sub/<?= $account['id']?>" method="post">
+                <form action="<?= URL?>sub/<?= $account['id']?>" method="get">
                     <button type="submit" >Subtract money</button>   
                 </form>
             </div>   

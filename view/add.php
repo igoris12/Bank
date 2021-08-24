@@ -1,14 +1,12 @@
     
 <?php 
  
-
-$bank = new BankControl;
-$id = $_GET['id'];
-$account = $bank->show($id);
 ?>
+
+<?php require __DIR__ . '/top.php' ?>
 <div class='containerr'>
     <div class='actionForm'>
-        <form action="?route=add&id=<?= $account['id']?>" method="post">
+        <form action="<?= $account['id']?>" method="post">
             <input  type="text" name="money" placeholder="0">
             <button type="submit" >Add money</button>
         </form>
@@ -22,3 +20,4 @@ $account = $bank->show($id);
         <p class='item'><b>Balance:</b> <?= $account['balance']?> EUR</p>
     </div>
 </div>
+<?php require __DIR__ . '/bottom.php' ?>

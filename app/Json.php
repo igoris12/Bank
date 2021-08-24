@@ -35,7 +35,11 @@ class Json implements DataBase {
  
     function update(int $accountId, array $accountData) : void
     {
-        
+        foreach ($this->data as  $key => $account) {
+            if ($account['id'] == $accountId) {
+                $this->data[$key] = $accountData;
+            }
+        }
     }
  
     function delete(int $accountId) : void
@@ -50,7 +54,12 @@ class Json implements DataBase {
  
     function show(int $accountId) : array
     {
-        
+        foreach ($this->data as $account) {
+            if ($account['id'] == $accountId) {
+                return $account;
+            }
+        }
+        return [];
     }
     
     function showAll() : array
