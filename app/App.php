@@ -26,10 +26,14 @@ class App {
            return (new BankController)->lsit();
         }
 
-        //
         if ('POST'== $_SERVER['REQUEST_METHOD'] && 1 == count($url) &&  $url[0] == 'creat') {
            return (new BankController)->newAccount();
         }
+
+         if ('POST'== $_SERVER['REQUEST_METHOD'] && 2 == count($url) &&  $url[0] == 'delete') {
+           return (new BankController)->delete($url[1]);
+        }
+
 
 
  
@@ -37,7 +41,7 @@ class App {
     }
 
     public static function view($name, $data = []): void {
-        // extract($data);
+        extract($data);
         require DIR . "view/$name.php";
     }
 

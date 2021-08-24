@@ -12,6 +12,7 @@
     "psr-4": {
         "Bank\\": "app/",
         "App\\DB\\": "app/",
+        "App\\DB\\Controlls\\": "app/",
         "Bank\\Controller\\": "app/Controllers"
         
         }

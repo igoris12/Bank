@@ -1,21 +1,21 @@
 <?php require __DIR__ . '/top.php' ?>
  
 
-    <?php if ($data != null) : ?>
-        <?php foreach($data as $account): ?>
+    <?php if ($accounts != null) : ?>
+        <?php foreach($accounts as $account): ?>
 
     <div class='containerr'>
         <div class='containerBtn'>
             <div class='btnContainer'>
-                <form action="#" method="post">
+                <form action="<?= URL?>delete/<?= $account['id']?>" method="post">
                     <button type="submit" >delete</button>
                 </form>
 
-                <form action="#>" method="post">
+                <form action="<?= URL?>add/<?= $account['id']?>" method="post">
                     <button type="submit" >Add money</button>
                 </form>
 
-                <form action="#" method="post">
+                <form action="<?= URL?>sub/<?= $account['id']?>" method="post">
                     <button type="submit" >Subtract money</button>   
                 </form>
             </div>   

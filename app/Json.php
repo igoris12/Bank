@@ -1,5 +1,7 @@
 <?php
 
+namespace App\DB\Controlls;
+
 use App\DB\DataBase;
 
 class Json implements DataBase {
@@ -17,7 +19,12 @@ class Json implements DataBase {
         if (!file_exists(DIR . 'data/accounts.json')) {
             file_put_contents(DIR . 'data/accounts.json', json_encode([]));
         }
-        $this->$data = json_decode(file_get_contents(DIR . 'data/accounts.json'),1);
+        $this->data = json_decode(file_get_contents(DIR . 'data/accounts.json'),1);
+    }
+
+     public function __destruct()
+    {
+        file_put_contents(DIR.'data/accounts.json', json_encode($this->data));
     }
 
 //
@@ -33,7 +40,12 @@ class Json implements DataBase {
  
     function delete(int $accountId) : void
     {
-        
+        foreach ($this->data as  $key => $account) {
+            if ($account['id'] == $accountId) {
+                unset($this->data[$key]);
+
+            }
+        }
     }
  
     function show(int $accountId) : array
@@ -43,6 +55,11 @@ class Json implements DataBase {
     
     function showAll() : array
     {
-        return $this->data;
+        if (isset($this->data)) {
+          return $this->data;
+        }else {
+            return [];
+        }
+       
     }
 }
