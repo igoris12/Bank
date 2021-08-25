@@ -2,6 +2,9 @@
 namespace Bank;
 
 use  Bank\Controller\BankController;
+use  Bank\Controller\HomeContriller;
+use  Bank\Controller\LoginController;
+
 
 class App {
 
@@ -15,7 +18,7 @@ class App {
         $url = explode('/', $url);
         
         if ('GET'== $_SERVER['REQUEST_METHOD'] && 1 == count($url) &&  $url[0] == '') {
-           return (new BankController)->home();
+           return (new HomeContriller)->home();
         }
 
         if ('GET'== $_SERVER['REQUEST_METHOD'] && 1 == count($url) &&  $url[0] == 'creat') {
@@ -34,6 +37,10 @@ class App {
            return (new BankController)->add($url[1]);
         }
 
+        if ('GET'== $_SERVER['REQUEST_METHOD'] && 1 == count($url) &&  $url[0] == 'login') {
+           return (new LoginController)->showLogin();
+        }
+
         if ('POST'== $_SERVER['REQUEST_METHOD'] && 1 == count($url) &&  $url[0] == 'creat') {
            return (new BankController)->newAccount();
         }
@@ -50,10 +57,14 @@ class App {
            return (new BankController)->update($url[1], $url[0]);
         }
 
+        if ('POST'== $_SERVER['REQUEST_METHOD'] && 1 == count($url) &&  $url[0] == 'login') {
+           return (new LoginController)->login();
+        }
 
+        if ('POST'== $_SERVER['REQUEST_METHOD'] && 1 == count($url) &&  $url[0] == 'logout') {
+           return (new LoginController)->logout();
+        }
 
- 
-    
     }
 
     public static function view($name, $data = []): void {
@@ -70,7 +81,7 @@ class App {
 
     //Messages 
 
-    public static function addMassage(string $type, string $msg) : void {
+    public static function addMessage(string $type, string $msg) : void {
         $_SESSION['msg'][]= ['type' => $type, 'msg' => $msg];
     }
 
@@ -115,7 +126,7 @@ class App {
         return $acountNumber;
     }
 
-    // controlls
+    // controls
     private static function nameControl(string $name): bool{
         return strlen($name) >= 3 ? true : false; 
     }
@@ -140,21 +151,10 @@ class App {
         return ($code[0] == 3 || $code[0] == 4 || $code[0] == 5 || $code[0] == 6 ) ? true : false;
     }
 
-    // public function accountNumberControl() :void {
-    //     if (!$this->showAll() == []) {
-    //             $accounts = $this->showAll();
-    //             foreach ($accounts as $key => $value) {
-    //                 for ($i=0; $i<count($accounts); $i++) {
-    //                 if ($accounts[$key]['aNumber'] == $_POST['acNumber']) {
-    //                     $_POST['acNumber'] = acountNumber();
-    //                     $i=0;
-    //                 }
-    //             }
-    //         }    
-    //     }
-    // }
 
-    
-
+    public static function isLogged()
+    {
+        return isset($_SESSION['login']) && $_SESSION['login'] == 1;
+    }
 
 }

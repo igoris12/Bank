@@ -45,6 +45,13 @@
             margin-bottom: 10px;
         }
 
+        .logout {
+            background: none;
+            border: none;
+            margin: 0;
+            
+        }
+
         /*  */
             .containerr {
                 border: 2px solid black;
@@ -120,13 +127,33 @@
                 font-size: 16px;
                 font-weight: 500;
             }
+
+            .login {
+                width: 100%;
+                text-align: center;
+            }
+
+            .loginEmail label {
+                width: 100px;
+            }
+
+             .loginPass label {
+                width: 100px;
+            }
     </style>
 </head>
 <body>
     <nav>
         <a href="<?= URL ?>">Home</a>
-        <a href="<?= URL ?>list">List</a>
-        <a href="<?= URL ?>creat">Creat new account</a>
+        <?php if (isLogged()): ?> 
+            <a href="<?= URL ?>list">List</a>
+            <a href="<?= URL ?>creat">Creat new account</a>
+             <form class="logout-form" action="<?= URL ?>logout" method="post">
+                <button type="submit" class="logout">Atsijungti <b><?= $_SESSION['name'] ?></b></button>
+            </form>
+        <?php else : ?>
+            <a href="<?= URL ?>login">Login</a>
+        <?php endif ?>
     </nav>
 
     <?php showMessage();

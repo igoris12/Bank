@@ -11,3 +11,9 @@ function showMessage()
 {
     return Bank\App::showMessage();
 }
+
+function isLogged() 
+{
+    return Bank\App::isLogged();
+}
+

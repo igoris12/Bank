@@ -13,7 +13,8 @@
         "Bank\\": "app/",
         "App\\DB\\": "app/",
         "App\\DB\\Controlls\\": "app/",
-        "Bank\\Controller\\": "app/Controllers"
+        "Bank\\Controller\\": "app/Controllers",
+        "Bank\\App\\Login\\": "app/Login"
         
         }
     }

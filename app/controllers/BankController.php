@@ -15,6 +15,12 @@ class BankController {
 
     }
 
+     public function __construct() {
+        if (!App::isLogged()) {
+            App::redirect('login');
+        }
+    }
+
     public function home() {
         return App::view('home');
     }
@@ -25,11 +31,15 @@ class BankController {
 
     public function add($id) {
         $account = $data = $this->get()->show((int)$id);
-         return App::view('add', ['account'=> $account]);
+        return App::view('add', ['account'=> $account]);
     }
 
     public function lsit() {
         $data = $this->get()->showAll();
+        usort($data,  function ($a, $b) {
+        return strtoupper($b['lastName']) < strtoupper($a['lastName']);
+    });
+
         return App::view('list', ['accounts' => $data]);
     }
 
@@ -46,9 +56,9 @@ class BankController {
             ];
 
             $this->get()->create($array); 
-            App::addMassage('success', 'New account was successfully created.');
+            App::addMessage('success', 'New account was successfully created.');
         }else {
-            App::addMassage('danger', 'First name and last name must be longer then 3 symbols, first and last name must not have spaces and numbers, check personal code.');
+            App::addMessage('danger', 'First name and last name must be longer then 3 symbols, first and last name must not have spaces and numbers, check personal code.');
         }
         
         App::redirect('creat');
@@ -59,9 +69,9 @@ class BankController {
 
         if ($account['balance']== 0) {
            $this->get()->delete($id); 
-            App::addMassage('success', 'Account was successfully deleted.');
+            App::addMessage('success', 'Account was successfully deleted.');
         }else {
-            App::addMassage('danger', 'You cannot delete this account.');
+            App::addMessage('danger', 'You cannot delete this account.');
         }
     
         App::redirect('list');
@@ -73,23 +83,25 @@ class BankController {
         if ($_POST['money'] != '' && is_numeric($_POST['money'])) {
             if ($action == 'add') {
                 $account['balance'] += $_POST['money'];
-                App::addMassage('success', 'Money was successfully added.');
+                App::addMessage('success', 'Money was successfully added.');
             }
             elseif ($action == 'sub') {
 
                 if ($_POST['money'] <= $account['balance']) {
                     $account['balance'] -= $_POST['money'];
-                    App::addMassage('success', 'Money was successfully sended.');
+                    App::addMessage('success', 'Money was successfully sended.');
                 }else {
-                    App::addMassage('danger', "Please use correct input form use number.");
+                    App::addMessage('danger', "Please use correct input form use number.");
                 }
             }
             $this->get()->update($id, $account);
         }else {
-            App::addMassage('danger', "Please use correct input form use number.");
+            App::addMessage('danger', "Please use correct input form use number.");
         }
 
-        $this->add($id);
+        App::redirect('list');
+        // $this->add($id);
+
     }
 
 }

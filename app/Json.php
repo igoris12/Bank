@@ -27,7 +27,7 @@ class Json implements DataBase {
         file_put_contents(DIR.'data/accounts.json', json_encode($this->data));
     }
 
-//
+
     function create(array $accountData) : void
     {
         $this->data[] = $accountData;
