@@ -23,23 +23,23 @@ class LoginController {
         $pass = md5($_POST['pass']) ?? '';
         $user = $this->get()->show($name);
         if (empty($user)) {
-            App::addMassage('danger', 'Email or password is incorrect.');
+            App::addMessage('danger', 'Email or password is incorrect.');
             App::redirect('login');
         }
         if ($user['pass'] == $pass) {
             $_SESSION['login'] = 1;
             $_SESSION['name'] = $user['name'];
-            App::addMassage('success', 'Login successfully.');
+            App::addMessage('success', 'Login successfully.');
             App::redirect('list');
         }
-        App::addMassage('danger', 'Email or password is incorrect.');
+        App::addMessage('danger', 'Email or password is incorrect.');
         App::redirect('login');
     }
 
      public function logout()
     {
         unset($_SESSION['login'], $_SESSION['name']);
-        App::addMassage('success', 'Successfully logout good day.');
+        App::addMessage('success', 'Successfully logout good day.');
         App::redirect('login');
     }
 }
