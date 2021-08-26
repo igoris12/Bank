@@ -140,6 +140,29 @@
              .loginPass label {
                 width: 100px;
             }
+
+            .regDiv {
+                width: 100%;
+                text-align: center;
+                padding: 15px;
+            }
+
+            .reg {
+                width: 30%;
+                border: 2px solid black;
+                border-radius: 5px;
+                text-align: center;
+                padding: 15px;
+                background: #cccad5;
+            }
+
+            @media  (max-width: 750px) {
+                .reg {
+                width: 70%;
+            }
+}
+
+          
     </style>
 </head>
 <body>
@@ -149,10 +172,12 @@
             <a href="<?= URL ?>list">List</a>
             <a href="<?= URL ?>creat">Creat new account</a>
              <form class="logout-form" action="<?= URL ?>logout" method="post">
-                <button type="submit" class="logout">Atsijungti <b><?= $_SESSION['name'] ?></b></button>
+                <button type="submit" class="logout"><b>Atsijungti</b></button>
             </form>
+            
         <?php else : ?>
             <a href="<?= URL ?>login">Login</a>
+            <a href="<?= URL ?>registrate">Registrate</a>
         <?php endif ?>
     </nav>
 

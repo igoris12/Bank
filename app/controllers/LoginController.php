@@ -19,16 +19,16 @@ class LoginController {
 
      public function login()
     {
-        $name = $_POST['name'] ?? ''; // ivestas el pastas
+        $email = $_POST['email'] ?? '';
         $pass = md5($_POST['pass']) ?? '';
-        $user = $this->get()->show($name);
+        $user = $this->get()->show($email);
         if (empty($user)) {
             App::addMessage('danger', 'Email or password is incorrect.');
             App::redirect('login');
         }
         if ($user['pass'] == $pass) {
             $_SESSION['login'] = 1;
-            $_SESSION['name'] = $user['name'];
+            $_SESSION['email'] = $user['email'];
             App::addMessage('success', 'Login successfully.');
             App::redirect('list');
         }
@@ -38,7 +38,7 @@ class LoginController {
 
      public function logout()
     {
-        unset($_SESSION['login'], $_SESSION['name']);
+        unset($_SESSION['login'], $_SESSION['email']);
         App::addMessage('success', 'Successfully logout good day.');
         App::redirect('login');
     }

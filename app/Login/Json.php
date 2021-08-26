@@ -23,6 +23,13 @@ class Json{
         file_put_contents(DIR.'data/user.json', json_encode($this->data));
     }
 
+    function create(array $accountData) : void
+    {
+        $this->data[] = $accountData;
+    }
+
+
+    //
     public function show(string $userID): array {
         foreach($this->data as $user) {
             if ($user['email'] == $userID) {

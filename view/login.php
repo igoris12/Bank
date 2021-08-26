@@ -3,7 +3,7 @@
 <form class="login" action="<?=URL?>login" method="post">
     <label>Email:</label>
     <div class="loginEmail">
-        <input type="text" name='name'>
+        <input type="text" name='email'>
     </div>
     <label>Password</label>
     <div class="loginPass">

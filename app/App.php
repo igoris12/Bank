@@ -4,6 +4,8 @@ namespace Bank;
 use  Bank\Controller\BankController;
 use  Bank\Controller\HomeContriller;
 use  Bank\Controller\LoginController;
+use  Bank\Controller\RegistrateController;
+
 
 
 class App {
@@ -41,6 +43,10 @@ class App {
            return (new LoginController)->showLogin();
         }
 
+        if ('GET'== $_SERVER['REQUEST_METHOD'] && 1 == count($url) &&  $url[0] == 'registrate') {
+           return (new RegistrateController)->showRegistrare();
+        }
+
         if ('POST'== $_SERVER['REQUEST_METHOD'] && 1 == count($url) &&  $url[0] == 'creat') {
            return (new BankController)->newAccount();
         }
@@ -63,6 +69,10 @@ class App {
 
         if ('POST'== $_SERVER['REQUEST_METHOD'] && 1 == count($url) &&  $url[0] == 'logout') {
            return (new LoginController)->logout();
+        }
+
+        if ('POST'== $_SERVER['REQUEST_METHOD'] && 1 == count($url) &&  $url[0] == 'registrate') {
+            return (new RegistrateController)->create();
         }
 
     }
@@ -155,6 +165,20 @@ class App {
     public static function isLogged()
     {
         return isset($_SESSION['login']) && $_SESSION['login'] == 1;
+    }
+
+    //registration controlr
+
+    public static function registrationControl () {
+
+        if (
+        strlen($_POST['name']) >=  4&& 
+        strlen($_POST['email']) >=  4 && 
+        strlen($_POST['pass']) >=  4
+        ) {
+            return true;
+        }
+        return false;
     }
 
 }

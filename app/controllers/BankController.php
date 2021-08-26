@@ -80,7 +80,7 @@ class BankController {
     public function update($id, $action) {
      
         $account = $this->get()->show((int)$id);
-        if ($_POST['money'] != '' && is_numeric($_POST['money'])) {
+        if ($_POST['money'] != '' && is_numeric($_POST['money']) && $_POST['money'] > 0 ) {
             if ($action == 'add') {
                 $account['balance'] += $_POST['money'];
                 App::addMessage('success', 'Money was successfully added.');
