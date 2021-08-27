@@ -3,10 +3,12 @@ namespace Bank\Controller;
 
 use Bank\App;
 use App\DB\Controlls\Json;
+use App\DB\Controlls\MariaDB;
 
 
 class BankController {
-    private $settings = 'Json';
+    // private $settings = 'Json';
+    private $settings = 'MariaDB';
     //
 
     private function get() {
@@ -50,7 +52,7 @@ class BankController {
             'id' => rand(1000000000, 9999999999),
             'name' => $_POST['firstName'],
             'lastName' =>$_POST['lastName'],
-            'personCode' => $_POST['pesonCode'],
+            'personCode' => $_POST['personCode'],
             'aNumber' => App::acountNumber(),
             'balance' => 0
             ];

@@ -110,13 +110,13 @@ class App {
 
     public static function creatControll(): bool {
         if (
-        is_numeric($_POST['pesonCode']) && 
-        strlen($_POST['pesonCode']) == 11 && 
+        is_numeric($_POST['personCode']) && 
+        strlen($_POST['personCode']) == 11 && 
         self::nameControl($_POST['lastName']) &&
         self::nameControl($_POST['firstName']) &&
         self::nameNumberControl($_POST['lastName']) &&
         self::nameNumberControl($_POST['firstName']) &&
-        self::personCodeStartControl($_POST['pesonCode'])
+        self::personCodeStartControl($_POST['personCode'])
         ) {
             return true;
         }else {

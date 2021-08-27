@@ -9,7 +9,7 @@
       <div class='inputContent'>
         <label >Nmae: </label><input  type="text" name="firstName" placeholder="First name">
         <label >Last name: </label><input  type="text" name="lastName" placeholder="Last name">
-        <label >Personal code: </label><input  type="text" name="pesonCode" placeholder="Personal code">
+        <label >Personal code: </label><input  type="text" name="personCode" placeholder="Personal code">
       </div>
       
       <button type="submit">Nauja Saskaita</button>
