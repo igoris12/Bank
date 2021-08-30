@@ -128,9 +128,19 @@
                 font-weight: 500;
             }
 
-            .login {
+            .loginContainer {
                 width: 100%;
+                margin-top: 30px;
                 text-align: center;
+            }
+
+           .login {
+                width:20%;
+                padding: 30px 0px;
+                text-align: center;
+                border-radius: 5px;
+                background: #cccad5;
+                border: 2px solid black;
             }
 
             .loginEmail label {
@@ -160,6 +170,21 @@
                 .reg {
                 width: 70%;
             }
+
+            @media  (max-width: 990px) {
+            .login{
+                width: 30%;
+            }
+
+            @media  (max-width: 690px) {
+            .login{
+                width: 50%;
+            }
+
+            @media  (max-width:400px) {
+            .login{
+                width: 100%;
+            }
 }
 
           
@@ -180,7 +205,6 @@
             <a href="<?= URL ?>registrate">Registrate</a>
         <?php endif ?>
     </nav>
-
     <?php showMessage();
 
 

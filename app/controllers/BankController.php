@@ -7,8 +7,8 @@ use App\DB\Controlls\MariaDB;
 
 
 class BankController {
-    // private $settings = 'Json';
-    private $settings = 'MariaDB';
+    private $settings = 'Json';
+    // private $settings = 'MariaDB';
     //
 
     private function get() {
