@@ -9,7 +9,7 @@ namespace App\DB\Controlls;
 use App\DB\DataBase;
 use \PDO;
 
-
+/* make protexted */
 
 class MariaDB implements DataBase {
     private static $obj;
@@ -19,13 +19,25 @@ class MariaDB implements DataBase {
         return self::$obj ?? self::$obj = new self;
     }
 
-    private function __construct() 
-    {
-       
+    private function __construct() {
+        $host = '127.0.0.1';
+        $db   = 'bank';
+        $user = 'root';
+        $pass = '';
+        $charset = 'utf8mb4';
+
+        $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+        $options = [
+        PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+        PDO::ATTR_EMULATE_PREPARES   => false,
+        ];
+
+        $pdo = new PDO($dsn, $user, $pass, $options);
     }
 
     //
-    function create(array $userData) : void
+    public function create(array $userData) : void
     {
         $host = '127.0.0.1';
         $db   = 'bank';
@@ -57,7 +69,7 @@ class MariaDB implements DataBase {
 
     }
  
-    function update(int $userId, array $userData) : void 
+    public function update(int $userId, array $userData) : void 
     {
         $balance = $userData['balance'];
 
@@ -84,7 +96,7 @@ class MariaDB implements DataBase {
         $pdo->query($sql);
     }
  
-    function delete(int $userId) : void 
+    public function delete(int $userId) : void 
     {
         $host = '127.0.0.1';
         $db   = 'bank';
@@ -108,7 +120,7 @@ class MariaDB implements DataBase {
         $pdo->query($sql);
     }
  
-    function show(int $userId) : array 
+    public function show(int $userId) : array 
     {
         $accounts = $this->showAll();
 
@@ -120,7 +132,7 @@ class MariaDB implements DataBase {
         return [];
     }
     
-    function showAll() : array 
+    public function showAll() : array 
     {
         $host = '127.0.0.1';
         $db   = 'bank';
